@@ -10,7 +10,7 @@ const routes: Routes = [
     component: LayoutComponent, 
     children: [
       { path: '', component: IndexComponent },
-      { path: 'portfolio', component: PortfolioComponent, pathMatch: 'full' }
+      { path: ':category', component: PortfolioComponent, pathMatch: 'full' }
     ]
   }
 ];

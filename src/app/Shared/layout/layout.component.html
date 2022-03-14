@@ -197,22 +197,33 @@
                 </li>
               </ul>
             </li> -->
-            <li class="nav-item">
-                <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">
+            <li class="nav-item" (click)="activeClick($event)">
+                <a [routerLink]="['/']" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Dashboard
+                    Home
                   </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a [routerLink]="['/portfolio']" routerLinkActive="active" class="nav-link">
-                  <i class="nav-icon fas fa-briefcase"></i>
+
+            <li *ngFor="let category of categories; let idx = index" class="nav-item" [ngClass]="{'menu-border-line': idx == categories.length - 1}" (click)="activeClick($event)">
+                <a [routerLink]="[category.Slug]" class="nav-link">
+                  <i class="nav-icon fas" [ngClass]="category.Icon"></i>
                   <p>
-                    Portfolio
+                    {{category.Name}}
                   </p>
                 </a>
             </li>
+
+            <li class="nav-item mt-1">
+              <a [routerLink]="['/']" class="nav-link">
+                <i class="nav-icon fas fa-plus"></i>
+                <p>
+                  Add category
+                </p>
+              </a>
+          </li>
+            
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
