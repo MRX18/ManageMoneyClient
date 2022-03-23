@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -9,6 +9,25 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class PortfolioComponent implements OnInit {
 
   slug: string = "";
+
+  chartData = [
+    { 
+      label: 'Series A',
+      data: [65, 59, 80, 81, 56, 55, 40], 
+      fill: true,
+    },
+    { 
+      label: 'Series B',
+      data: [50, 54, 10, 43, 55, 56, 32], 
+      fill: true,
+    }
+  ];
+  chartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  chartOptions = {
+    responsive: true
+  };
+  chartLegend = true;
+  chartPlugins = [];
 
   constructor(private route: ActivatedRoute) { }
 

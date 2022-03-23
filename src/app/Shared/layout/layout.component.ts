@@ -1,10 +1,11 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 interface Category {
   Name: string;
   Slug: string;
   Icon: string;
+  Active: boolean;
 }
 
 @Component({
@@ -14,48 +15,60 @@ interface Category {
 })
 export class LayoutComponent implements OnInit {
 
-  categories: Array<Category> = [];
-  currentCategory: string = "";
+  title: string = "";
+  currentCategory: Category | undefined;
+  categories: Array<Category> = [{
+        Name: "Home",
+        Slug: "",
+        Icon: "fa-tachometer-alt",
+        Active: false
+  }];
 
   constructor(
-    private route: ActivatedRoute, 
-    private renderer: Renderer2) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((param: Params) => {
-      this.currentCategory = param["category"];
-    });
-
-    this.categories = [
+    this.categories = this.categories.concat([
       {
         Name: "Name 1",
         Slug: "Name_1",
-        Icon: "fa-briefcase"
+        Icon: "fa-briefcase",
+        Active: false
       },
       {
         Name: "Name 2",
         Slug: "Name_2",
-        Icon: "fa-briefcase"
+        Icon: "fa-briefcase",
+        Active: false
       },
       {
         Name: "Name 3",
         Slug: "Name_3",
-        Icon: "fa-briefcase"
+        Icon: "fa-briefcase",
+        Active: false
       },
       {
         Name: "Name 4",
         Slug: "Name_4",
-        Icon: "fa-briefcase"
+        Icon: "fa-briefcase",
+        Active: false
       }
-    ];
+    ]);
+    this.currentCategory = this.getCurrentSlug();
+    this.currentCategory.Active = true;
   }
 
-  activeClick(event: any) {
-    document.querySelectorAll(".main-sidebar .nav-item").forEach(el => {
-      this.renderer.removeClass(el.firstChild, "active");
-    });
+  // set the color for sitebar menu item
+  activeClick(event: any) {    
+    let activeCategory = this.categories.find(function(el) { return el.Active == true }) as Category;
+    activeCategory.Active = false;
 
-    this.renderer.addClass(event.currentTarget.firstChild, "active");
+    this.currentCategory = this.getCurrentSlug();
+    this.currentCategory.Active = true;
   }
 
+  private getCurrentSlug() : Category {
+    let slug = this.router.url.substring(1);
+    return this.categories.find(function(el) { return el.Slug == slug }) as Category;
+  }
 }

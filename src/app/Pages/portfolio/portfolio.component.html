@@ -1,1 +1,213 @@
-<p>Portfolio works! {{slug}}</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title pt-1">
+          <i class="fas fa-chart-pie mr-1"></i>
+          Portfolio Chart
+        </h3>
+        <div class="card-tools">
+          <ul class="nav nav-pills ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3 pt-4">
+
+            <div class="info-box bg-success">
+              <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Likes</span>
+                <span class="info-box-number">41,410</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                  70% Increase in 30 Days
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+
+            <div class="info-box bg-info">
+              <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-number">41,410</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                  70% Increase in 30 Days
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            
+            <div class="info-box bg-danger">
+              <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Comments</span>
+                <span class="info-box-number">41,410</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                  70% Increase in 30 Days
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            
+          </div>
+          <div class="col-sm-9">
+            <div class="tab-content">
+              <div class="chart tab-pane active" id="revenue-chart">
+                <canvas baseChart
+                  [datasets]="chartData"
+                  [labels]="chartLabels"
+                  [options]="chartOptions"
+                  [legend]="chartLegend"
+                  [plugins]="chartPlugins"
+                  [type]="'line'">
+                </canvas>
+              </div>
+              <div class="chart tab-pane col-6 offset-3" id="sales-chart">
+                <canvas baseChart
+                  [datasets]="chartData"
+                  [labels]="chartLabels"
+                  [options]="chartOptions"
+                  [legend]="chartLegend"
+                  [plugins]="chartPlugins"
+                  [type]="'doughnut'">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+              <h5 class="description-header">$35,210.43</h5>
+              <span class="description-text">TOTAL REVENUE</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+              <h5 class="description-header">$10,390.90</h5>
+              <span class="description-text">TOTAL COST</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+              <h5 class="description-header">$24,813.53</h5>
+              <span class="description-text">TOTAL PROFIT</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block">
+              <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+              <h5 class="description-header">1200</h5>
+              <span class="description-text">GOAL COMPLETIONS</span>
+            </div>
+            <!-- /.description-block -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Your Assets</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Asset</th>
+                    <th>Price</th>
+                    <th>24h Profit</th>
+                    <th>All Time Profit</th>
+                    <th>Avg. Price</th>
+                    <th>Holdings</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr data-widget="expandable-table" aria-expanded="false">
+                <td>
+                  <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
+                  SOL
+                </td>
+                <td>$89.64<span class="description-percentage percentage below"><i class="fas fa-caret-down"></i> 3.4%</span></td>
+                <td class="text-success">+$34.2311</td>
+                <td>$40.4319<span class="description-percentage percentage above"><i class="fas fa-caret-up"></i> 17%</span></td>
+                <td>$89.95</td>
+                <td>$10.1</td>
+              </tr>
+              <tr class="expandable-body d-none">
+                <td colspan="6">
+                  <div class="p-0" style="display: none;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Date & Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Buy</td>
+                                <td class="text-success">+0.1112 SOL</td>
+                                <td>$89.94</td>
+                                <td>$10.00</td>
+                                <td>10.03.2022 14:22</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
