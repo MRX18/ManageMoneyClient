@@ -1,5 +1,6 @@
-<app-form-modal></app-form-modal>
-<div class="wrapper">
+<div class="hold-transition sidebar-mini layout-fixed">
+  <app-form-modal></app-form-modal>
+  <div class="wrapper">
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -86,8 +87,8 @@
                 </li>
               </ul>
             </li> -->
-            <li *ngFor="let category of categories; let idx = index" class="nav-item" [ngClass]="{'menu-border-line': idx == categories.length - 1}" (click)="activeClick($event)">
-                <a [routerLink]="[category.Slug]" class="nav-link" [ngClass]="{'active': category.Active}">
+            <li *ngFor="let category of categories; let idx = index" class="nav-item" [ngClass]="{'menu-border-line': idx == categories.length - 1}"> <!--(click)="activeClick($event)"-->
+                <a [routerLink]="[category.Slug]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
                   <i class="nav-icon fas" [ngClass]="category.Icon"></i>
                   <p>
                     {{category.Name}}
@@ -193,3 +194,4 @@
     <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
+</div>

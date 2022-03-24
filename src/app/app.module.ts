@@ -10,6 +10,9 @@ import { FormModalComponent } from './Shared/form-modal/form-modal.component';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgChartsModule } from 'ng2-charts';
+import { AuthLayoutComponent } from './Shared/auth-layout/auth-layout.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { RegisterComponent } from './Pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { NgChartsModule } from 'ng2-charts';
     LayoutComponent,
     IndexComponent,
     PortfolioComponent,
-    FormModalComponent
+    FormModalComponent,
+    AuthLayoutComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
