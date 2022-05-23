@@ -2,8 +2,13 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { InjectionToken } from '@angular/core'
+
+export const API_URL = new InjectionToken<string>('api url');
+
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://localhost:44370/'
 };
 
 /*

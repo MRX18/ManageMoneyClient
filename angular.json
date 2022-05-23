@@ -28,6 +28,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
               "node_modules/admin-lte/dist/css/adminlte.min.css"

@@ -22,3 +22,8 @@
 .multiselect-dropdown .dropdown-btn {
     border: 1px solid #ced4da !important;
 }
+
+/*----- Form -----*/
+.errors {
+    min-height: 20px;
+}
