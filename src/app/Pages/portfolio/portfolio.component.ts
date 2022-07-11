@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -29,12 +30,26 @@ export class PortfolioComponent implements OnInit {
   chartLegend = true;
   chartPlugins = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private notification: NotificationService
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.slug = params["category"];
+      this.notification.loader();
+      // TODO: load content
+      this.notification.unloader();
     });
+  }
+
+  ngAfterContentInit() {
+    this.notification.loader();
+  }
+
+  ngAfterViewInit(): void {
+    this.notification.unloader();
   }
 
 }

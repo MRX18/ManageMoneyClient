@@ -57,9 +57,9 @@ export class LayoutComponent implements OnInit {
     this.currentCategory = this.getCurrentSlug();
   }
 
-  test(e: any) {
-    console.log(e);
-  }
+  // test(e: any) {
+  //   console.log(e);
+  // }
 
   private getCurrentSlug() : Category {
     let slug = this.router.url.replace('/' + this.activeRoute.snapshot.url[0].path + '/', '');

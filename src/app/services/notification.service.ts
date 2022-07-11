@@ -16,6 +16,9 @@ export class NotificationService {
     this.renderer = rendererManager.createRenderer(null, null);
   }
 
+  /*--------------------------------------------------------
+                       --NOTIFICATION--
+  --------------------------------------------------------*/
   private createElement(icon: any, title: string, text?: string) {
     this.deleteElement();
 
@@ -192,5 +195,28 @@ export class NotificationService {
     /*--------*/
 
     this.createElement(iconContainer, title, text);
+  }
+
+  /*--------------------------------------------------------
+                          --LOADER--
+  --------------------------------------------------------*/
+  loader() {
+    let loader = this.renderer.selectRootElement(".loader", true);
+    let icon = this.renderer.selectRootElement(".loader > .animation-shake", true);
+    
+    this.renderer.setStyle(icon, "display", "block");
+    this.renderer.setStyle(loader, "height", "100vh");
+  }
+
+  unloader() {
+    let loader = this.renderer.selectRootElement(".loader", true);
+    let icon = this.renderer.selectRootElement(".loader > .animation-shake", true);
+    
+    setTimeout(() => {
+      setTimeout(() => {
+        this.renderer.setStyle(icon, "display", "none");
+      }, 200);
+      this.renderer.setStyle(loader, "height", "0px");
+    }, 1000);
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private notification: NotificationService
+  ) { }
 
   ngOnInit(): void {
+    
   }
 
+  ngAfterContentInit() {
+    this.notification.loader();
+  }
+
+  ngAfterViewInit(): void {
+    this.notification.unloader();
+  }
 }
