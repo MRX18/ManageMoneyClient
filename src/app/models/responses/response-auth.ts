@@ -3,7 +3,7 @@ export interface Jwt {
     token: string
 }
 
-export class ResponseAuth<T> {
+export class Response<T> {
     notificationType: number | null = null;
     message: string | null = null;
     data: T | null = null;

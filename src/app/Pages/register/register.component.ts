@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Validator, ValidatorType } from 'src/app/models/validator';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormService } from 'src/app/services/form.service';
+import { ResourceService } from 'src/app/services/resource.service';
 import { ExtendedFormControl } from 'src/app/utils/extended-form-control';
 
 @Component({
@@ -11,41 +12,44 @@ import { ExtendedFormControl } from 'src/app/utils/extended-form-control';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  private password: ExtendedFormControl = new ExtendedFormControl(null, [
-    new Validator(ValidatorType.required, true, "Password field: required message"),
-    new Validator(ValidatorType.minLength, 8, "Password field: min length {0}"),
-    new Validator(ValidatorType.maxLength, 32, "Password field: max length {0}"),
-  ]);
-
-  form: FormGroup = new FormGroup({
-    fullName: new ExtendedFormControl("", [
-      new Validator(ValidatorType.required, true, "Name: required message"),
-      new Validator(ValidatorType.minLength, 2, "Min field {0}"),
-      new Validator(ValidatorType.maxLength, 32, "Max field {0}"),
-    ]),
-    email: new ExtendedFormControl("", [
-      new Validator(ValidatorType.email, true, "Email field: email message"),
-      new Validator(ValidatorType.required, true, "Email field: required message")
-    ]),
-    password: this.password,
-    confirmPassword: new ExtendedFormControl(null, [
-      new Validator(ValidatorType.required, true, "Password field: required message"),
-      new Validator(ValidatorType.minLength, 8, "Password field: min length {0}"),
-      new Validator(ValidatorType.maxLength, 32, "Password field: max length {0}"),
-      new Validator(ValidatorType.compare, this.password, "Password field: not compare")
-    ])
-  });
-
+ 
   constructor(
     private authService: AuthService,
-    private formService: FormService
-    ) { }
+    private formService: FormService,
+    private resourceService: ResourceService
+  ) { }
 
-  ngOnInit(): void {
+  form: FormGroup = new FormGroup({});
+
+  async ngOnInit() {
+    let password: ExtendedFormControl = new ExtendedFormControl(null, await this.resourceService.get("fields:Password"), [
+      new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError")),
+      new Validator(ValidatorType.minLength, 8, await this.resourceService.get("messages:MinLengthError")),
+      new Validator(ValidatorType.maxLength, 32, await this.resourceService.get("messages:MaxLengthError")),
+    ]);
+
+    this.form = new FormGroup({
+      fullName: new ExtendedFormControl("", await this.resourceService.get("fields:FullName"), [
+        new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError")),
+        new Validator(ValidatorType.minLength, 2, await this.resourceService.get("messages:MinLengthError")),
+        new Validator(ValidatorType.maxLength, 32, await this.resourceService.get("messages:MaxLengthError")),
+      ]),
+      email: new ExtendedFormControl("", await this.resourceService.get("fields:Email"), [
+        new Validator(ValidatorType.email, true, await this.resourceService.get("messages:EmailError")),
+        new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError"))
+      ]),
+      password: password,
+      confirmPassword: new ExtendedFormControl(null, await this.resourceService.get("fields:ConfirmPassword"), [
+        new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError")),
+        new Validator(ValidatorType.minLength, 8, await this.resourceService.get("messages:MinLengthError")),
+        new Validator(ValidatorType.maxLength, 32, await this.resourceService.get("messages:MaxLengthError")),
+        new Validator(ValidatorType.compare, password, await this.resourceService.get("messages:CompareError"))
+      ])
+    });
   }
 
   submit() {
+    console.log(this.resourceService.get(""));
     if(this.form.valid) {
       this.authService.register(this.form.value).subscribe(res => {
         

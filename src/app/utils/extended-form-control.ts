@@ -4,9 +4,11 @@ import { Validator, ValidatorType } from "../models/validator";
 export class ExtendedFormControl extends FormControl {
 
     message: string = "";
+    displayName?: string = "";
 
-    constructor(formState?: any, validators?: Validator[] | null) {
+    constructor(formState?: any, displayName?: string, validators?: Validator[] | null) {
         super(formState);
+        this.displayName = displayName;
         this.messageEvent(validators);
         this.setValidator(validators);
     }
@@ -40,7 +42,7 @@ export class ExtendedFormControl extends FormControl {
                     });
 
                     if(index !== -1) {
-                       this.message = this.stringFormat(validators[index].message, validators[index].data);
+                       this.message = this.stringFormat(validators[index].message, [validators[index].data]);
                        return;
                     }
                 }
@@ -50,9 +52,14 @@ export class ExtendedFormControl extends FormControl {
         });
     }
 
-    private stringFormat(string: string, data: string | number | boolean | ExtendedFormControl | null = null): string {
-        return string.replace(/{([0-9]+)}/g, function (match, index) : string {
-            return data ? data.toString() : match;
+    private stringFormat(text: string, data?: Array<string | number | boolean | ExtendedFormControl | null>): string {
+        debugger;
+        if(this.displayName) {
+            data?.unshift(this.displayName);
+        }
+
+        return text.replace(/{([0-9]+)}/g, function (match, index) : string {
+            return data && data.length > index ? data[index] as string : match;
         });
     }
 }

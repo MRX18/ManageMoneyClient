@@ -6,6 +6,7 @@ import { ExtendedFormControl } from 'src/app/utils/extended-form-control';
 import { Validator, ValidatorType } from 'src/app/models/validator';
 import { ResponseError } from 'src/app/models/responses/response-error';
 import { FormService } from 'src/app/services/form.service';
+import { ResourceService } from 'src/app/services/resource.service';
 
 @Component({
   selector: 'app-login',
@@ -14,24 +15,28 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({
-    email: new ExtendedFormControl("", [
-      new Validator(ValidatorType.email, true, "Email field: email message"),
-      new Validator(ValidatorType.required, true, "Email field: required message")
-    ]),
-    password: new ExtendedFormControl(null, [
-      new Validator(ValidatorType.required, true, "Password field: required message"),
-      new Validator(ValidatorType.minLength, 8, "Password field: min length {0}"),
-      new Validator(ValidatorType.maxLength, 32, "Password field: max length {0}"),
-    ])
-  });
-
   constructor(
     private authService: AuthService,
-    private formService: FormService
+    private formService: FormService,
+    private resourceService: ResourceService
   ) { }
 
-  ngOnInit(): void {}
+  form: FormGroup = new FormGroup({});
+
+  async ngOnInit() 
+  {
+    this.form = new FormGroup({
+      email: new ExtendedFormControl("", await this.resourceService.get("fields:Email"), [
+        new Validator(ValidatorType.email, true, await this.resourceService.get("messages:EmailError")),
+        new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError"))
+      ]),
+      password: new ExtendedFormControl(null, await this.resourceService.get("fields:Password"), [
+        new Validator(ValidatorType.required, true, await this.resourceService.get("messages:RequiredError")),
+        new Validator(ValidatorType.minLength, 8, await this.resourceService.get("messages:MinLengthError")),
+        new Validator(ValidatorType.maxLength, 32, await this.resourceService.get("messages:MaxLengthError")),
+      ])
+    });
+  }
 
   submit() {
     if(this.form.valid) {
