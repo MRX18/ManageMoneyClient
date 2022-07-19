@@ -17,6 +17,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { API_URL, environment } from 'src/environments/environment';
 import { ACCESS_TOKEN_KEY } from './services/auth.service';
+import { ScrollableChartComponent } from './Shared/scrollable-chart/scrollable-chart.component';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -31,7 +32,8 @@ export function tokenGetter() {
     FormModalComponent,
     AuthLayoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ScrollableChartComponent
   ],
   imports: [
     BrowserModule,

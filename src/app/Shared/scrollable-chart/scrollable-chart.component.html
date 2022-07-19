@@ -1,0 +1,13 @@
+<canvas baseChart
+    [datasets]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [legend]="chartLegend"
+    [plugins]="chartPlugins"
+    [type]="'line'"
+    (mousedown)="mouseDown($event)"
+    (mouseup)="mouseUp($event)"
+    (mouseout)="mouseOut($event)"
+    (mousemove)="mouseMove($event)"
+    (mousewheel)="mouseWheel($event)">
+</canvas>

@@ -1,0 +1,6 @@
+canvas:hover {
+    cursor: grab;
+}
+canvas:active:hover {
+    cursor: grabbing;
+}

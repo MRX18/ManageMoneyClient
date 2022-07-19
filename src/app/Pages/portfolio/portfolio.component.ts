@@ -16,11 +16,6 @@ export class PortfolioComponent implements OnInit {
       label: 'Series A',
       data: [65, 59, 80, 81, 56, 55, 40], 
       fill: true,
-    },
-    { 
-      label: 'Series B',
-      data: [50, 54, 10, 43, 55, 56, 32], 
-      fill: true,
     }
   ];
   chartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -50,6 +45,10 @@ export class PortfolioComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.notification.unloader();
+  }
+
+  event(e: MouseEvent) {
+    console.log('event: offsetX: ', e.offsetX, ' offsetY: ', e.offsetY);
   }
 
 }

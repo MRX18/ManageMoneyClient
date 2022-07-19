@@ -87,7 +87,7 @@
                 </li>
               </ul>
             </li> -->
-            <li *ngFor="let category of categories; let idx = index" class="nav-item" [ngClass]="{'menu-border-line': idx == categories.length - 1}"> <!--(click)="activeClick($event)"-->
+            <li *ngFor="let category of categories; let idx = index" class="nav-item" [ngClass]="{'menu-border-line': idx == categories.length - 1}">
                 <a [routerLink]="[category.Slug]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
                   <i class="nav-icon fas" [ngClass]="category.Icon"></i>
                   <p>

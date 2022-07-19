@@ -1,6 +1,9 @@
 .menu-border-line {
     border-bottom: 1px solid #4f5962;
 }
+.control-sidebar {
+    z-index: 9999;
+}
 .loader {
     display: flex;
     background-color: rgba(255, 255, 255, 0.5);
